@@ -18,11 +18,11 @@
   const API_ENDPOINT = '/api/copy';
 
   const STEPS = [
-    { id: 'html',  label: '📄 HTMLを解析中…',              done: 'HTML解析完了' },
-    { id: 'css',   label: '🎨 CSSを解析中…',              done: 'CSS解析完了' },
-    { id: 'js',    label: '⚡ JSを解析中…',               done: 'JS解析完了' },
-    { id: 'ai',    label: '🧠 AIが学習コンテンツを生成中…', done: 'AI学習コンテンツ生成完了' },
-    { id: 'done',  label: '🎉 学習レポート完成！',         done: '🎉 学習レポート完成！' },
+    { id: 'html',  label: 'HTMLを解析中…',              done: 'HTML解析完了' },
+    { id: 'css',   label: 'CSSを解析中…',              done: 'CSS解析完了' },
+    { id: 'js',    label: 'JSを解析中…',               done: 'JS解析完了' },
+    { id: 'ai',    label: 'AIが学習コンテンツを生成中…', done: 'AI学習コンテンツ生成完了' },
+    { id: 'done',  label: '学習レポート完成！',         done: '学習レポート完成！' },
   ];
 
   // Staggered fade-in on load
