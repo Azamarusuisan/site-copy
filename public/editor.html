@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>パクリくん エディタ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="topbar-logo">📋 パクリくん</a>
+      <span class="topbar-sep">/</span>
+      <span class="topbar-site" id="site-name">loading...</span>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-btn" id="analyze-btn" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/>
+        </svg>
+        AI分析
+      </button>
+      <button class="topbar-btn topbar-btn-primary" id="save-btn" type="button">保存</button>
+      <select class="device-select" id="device-select">
+        <option value="100%">Desktop</option>
+        <option value="768px">Tablet</option>
+        <option value="375px">Mobile</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="editor-layout">
+
+    <!-- Sidebar: file list -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">Files</div>
+      <div class="file-list" id="file-list"></div>
+    </aside>
+
+    <!-- Code Editor -->
+    <div class="editor-pane" id="editor-pane">
+      <div class="editor-tab-bar" id="editor-tab-bar"></div>
+      <textarea class="editor-textarea" id="editor-textarea" spellcheck="false"></textarea>
+    </div>
+
+    <!-- Resize Handle -->
+    <div class="resize-handle" id="resize-handle"></div>
+
+    <!-- Live Preview -->
+    <div class="preview-pane" id="preview-pane">
+      <iframe id="preview-iframe" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    </div>
+  </div>
+
+  <!-- AI Analysis Panel -->
+  <div class="analysis-overlay hidden" id="analysis-overlay">
+    <div class="analysis-panel" id="analysis-panel">
+      <div class="analysis-header">
+        <span>AI 構造分析</span>
+        <button class="analysis-close" id="analysis-close" type="button">&times;</button>
+      </div>
+      <div class="analysis-body" id="analysis-body">
+        <div class="analysis-loading hidden" id="analysis-loading">
+          <span class="spinner"></span>
+          <span>分析中...</span>
+        </div>
+        <div class="analysis-content" id="analysis-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile: Toggle Buttons -->
+  <div class="mobile-toggle" id="mobile-toggle">
+    <button class="mobile-toggle-btn active" data-view="code" type="button">Code</button>
+    <button class="mobile-toggle-btn" data-view="preview" type="button">Preview</button>
+  </div>
+
+  <script src="editor.js"></script>
+</body>
+</html>

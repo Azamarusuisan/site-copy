@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>サイト丸パクリくん - URLひとつでサイトを丸ごとコピー</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">📋 パクリくん</a>
+      <div class="nav-links">
+        <a href="#how" class="nav-link">使い方</a>
+        <a href="https://github.com" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="#input-section" class="nav-cta">今すぐ試す</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-badge anim-item">✦ AI搭載 サイトコピーツール</div>
+      <h1 class="hero-title anim-item">URLひとつで、<br>サイトを丸ごとコピー。</h1>
+      <p class="hero-sub anim-item">HTML・CSS・画像・フォント、すべて自動取得。ワンクリックでZIPダウンロード。</p>
+
+      <div class="input-section anim-item" id="input-section">
+        <div class="input-bar" id="input-bar">
+          <span class="input-icon">🔗</span>
+          <input type="url" id="url-input" placeholder="https://example.com" autocomplete="off" spellcheck="false">
+          <button id="start-btn" type="button">
+            <span class="btn-label">コピー開始</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="features anim-item" id="features">
+      <div class="feature-card">
+        <div class="feature-emoji">📄</div>
+        <h3 class="feature-title">HTML完全取得</h3>
+        <p class="feature-desc">DOM構造をまるごと取得。パス書き換えも自動で、そのまま動くHTMLを生成します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🎨</div>
+        <h3 class="feature-title">CSS・画像もまとめて</h3>
+        <p class="feature-desc">外部CSS・Webフォント・画像アセットをすべて検出し、ローカルにダウンロード。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">⚡</div>
+        <h3 class="feature-title">ZIP即ダウンロード</h3>
+        <p class="feature-desc">取得したファイルを自動でZIPパッケージング。ワンクリックでダウンロード完了。</p>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <section class="progress-section hidden" id="progress-section">
+      <div class="section-label">コピー状況</div>
+      <div class="steps" id="steps"></div>
+    </section>
+
+    <!-- Terminal Log -->
+    <section class="terminal hidden" id="log-section">
+      <div class="terminal-bar">
+        <div class="terminal-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="terminal-title">terminal</span>
+      </div>
+      <div class="terminal-body" id="terminal-body"></div>
+    </section>
+
+    <!-- Code Viewer -->
+    <section class="code-viewer hidden" id="code-viewer">
+      <div class="code-tabs" id="code-tabs"></div>
+      <div class="code-panel">
+        <button class="code-copy-btn" id="code-copy-btn" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span>コピー</span>
+        </button>
+        <pre class="code-content" id="code-content"></pre>
+      </div>
+    </section>
+
+    <!-- Site Preview -->
+    <section class="preview-section hidden" id="preview-section">
+      <div class="section-label">Live Preview</div>
+      <div class="preview-device-bar">
+        <button class="preview-device-btn active" data-width="100%" type="button">Desktop</button>
+        <button class="preview-device-btn" data-width="768px" type="button">Tablet</button>
+        <button class="preview-device-btn" data-width="375px" type="button">Mobile</button>
+      </div>
+      <div class="preview-frame-wrap">
+        <iframe id="preview-iframe" class="preview-frame" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section class="download-section hidden" id="download-section">
+      <button id="download-btn" class="download-btn" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        ZIPでダウンロード
+      </button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 パクリくん</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
