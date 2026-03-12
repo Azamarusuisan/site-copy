@@ -18,13 +18,11 @@
   const API_ENDPOINT = '/api/copy';
 
   const STEPS = [
-    { id: 'html',  label: 'HTML を取得中…',       done: 'HTML 取得完了' },
-    { id: 'css',   label: 'CSS をダウンロード中…', done: 'CSS ダウンロード完了' },
-    { id: 'img',   label: '画像を取得中…',         done: '画像取得完了' },
-    { id: 'font',  label: 'フォントを取得中…',     done: 'フォント取得完了' },
-    { id: 'js',    label: 'JS を取得中…',          done: 'JS 取得完了' },
-    { id: 'path',  label: 'パスを書き換え中…',     done: 'パス書き換え完了' },
-    { id: 'done',  label: '完了',                   done: '完了' },
+    { id: 'html',  label: '📄 HTMLを解析中…',              done: 'HTML解析完了' },
+    { id: 'css',   label: '🎨 CSSを解析中…',              done: 'CSS解析完了' },
+    { id: 'js',    label: '⚡ JSを解析中…',               done: 'JS解析完了' },
+    { id: 'ai',    label: '🧠 AIが学習コンテンツを生成中…', done: 'AI学習コンテンツ生成完了' },
+    { id: 'done',  label: '🎉 学習レポート完成！',         done: '🎉 学習レポート完成！' },
   ];
 
   // Staggered fade-in on load
@@ -129,13 +127,13 @@
 
   function resetBtn() {
     startBtn.disabled = false;
-    startBtn.querySelector('.btn-label').textContent = 'コピー開始';
+    startBtn.querySelector('.btn-label').textContent = '解析スタート';
     startBtn.querySelector('.btn-arrow').style.display = '';
   }
 
   async function runCopy(url) {
     startBtn.disabled = true;
-    startBtn.querySelector('.btn-label').textContent = 'コピー中…';
+    startBtn.querySelector('.btn-label').textContent = '解析中…';
     startBtn.querySelector('.btn-arrow').style.display = 'none';
     terminalBody.innerHTML = '';
     buildSteps();
@@ -157,7 +155,7 @@
       el.classList.add('visible');
     });
     activateStep(0);
-    addLog('info', 'サイトをコピー中...');
+    addLog('info', 'サイトを解析中...');
 
     try {
       const res = await fetch(API_ENDPOINT, {
